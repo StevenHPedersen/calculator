@@ -3,4 +3,50 @@
     padding: none;
     border: none;
     box-sizing: border-box;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid red;
+    width: 200px;
+    height: 275px;
+    background: green;
+}
+
+.container > *{
+    border: 1px solid black;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+}
+
+.display > * {
+    border: 1px solid black;
+    flex: 1;
+    text-align: end;
+}
+
+.rows {
+    display: flex;
+}
+
+.rows > * {
+    flex: 1;
+}
+
+.button {
+    box-shadow: black;
+    background-color: #ccc;
+}
+
+#workingtree {
+    font-size: 12px;
+}
+
+#result {
+    font-size: 18px;
 }
