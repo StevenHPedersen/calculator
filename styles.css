@@ -1,52 +1,68 @@
 * {
     margin: none;
     padding: none;
-    border: none;
     box-sizing: border-box;
     text-align: center;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid red;
-    width: 200px;
-    height: 275px;
-    background: green;
-}
-
-.container > *{
-    border: 1px solid black;
-}
-
-.display {
+body {
     display: flex;
     flex-direction: column;
 }
 
-.display > * {
-    border: 1px solid black;
-    flex: 1;
+#container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ccc;
+    height: auto;
+    min-width: 200px;
+    margin: auto;
+}
+
+#display {
+    background-color: black;
+    color: white;
+    padding: 3px;
+}
+
+#display > * {
     text-align: end;
+    padding-right: 5px;
+}
+
+#workingtree {
+    font-size: 14px;
+}
+
+#result {
+    font-size: 24px;
+}
+
+#selections {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 4px;
 }
 
 .rows {
     display: flex;
-}
-
-.rows > * {
+    gap: 3px;
     flex: 1;
 }
 
 .button {
-    box-shadow: black;
-    background-color: #ccc;
+    flex: 1;
+    font-size: 16px;
+    border-radius: 25px;
 }
 
-#workingtree {
-    font-size: 12px;
+#multiply,
+#subtract,
+#divide,
+#add {
+    background-color: orangered;
 }
-
-#result {
-    font-size: 18px;
+#equals {
+    background-color: aliceblue;
 }
