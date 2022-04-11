@@ -19,9 +19,9 @@ const workingTree = document.getElementById('working-tree');
 const result_div = document.getElementById('result');
 
 let displayValue = 0;
-let result = 0;
-
 let num1 = 0;
+let result = 0;
+let operand = '';
 
 //simple math operator functions.
 function addition(x, y) {
@@ -65,9 +65,8 @@ function clearAll() {
 
 // function to begin equation. Assigns numbers to the display.
 function startEquation(num) {
-  workingTree.textContent += num;
-  displayValue = parseInt(workingTree.textContent);
-  console.log(workingTree.textContent);
+  displayValue += (num);
+  console.log(displayValue)
 };
 
 
@@ -122,10 +121,7 @@ clear.addEventListener('click', () => {
 });
 
 add.addEventListener('click', () => {
-  num1 += displayValue;
-  displayValue = 0;
-  console.log(num1);
-  workingTree.textContent = num1 + ' + ';
+  
 });
 
 subtract.addEventListener('click', () => {
@@ -140,3 +136,42 @@ divide.addEventListener('click', () => {
 
 });
 //End of eventListeners//
+
+//I re-wrote some of the code because I
+//  think I started off with too much at once.
+//Below is a simple version of a working calculator
+//   that needs to be applied to all the other operator buttons.
+
+function getNumber(btn) {
+  displayValue += btn;    
+  return displayValue;
+};
+
+function equation() {
+  num1 += displayValue;
+  operand = operand;
+  displayValue = '';
+};
+
+btnTwo.addEventListener('click', () => {
+  getNumber(2);
+});
+
+btnFour.addEventListener('click', () => {
+  getNumber(4);
+});
+
+btnPlus.addEventListener('click', () => {  
+  operand = '+';
+  equation();
+});
+
+btnEquals.addEventListener('click', () => {
+  num1 = parseInt(num1);
+  displayValue = parseInt(displayValue);
+  console.log(num1);
+  console.log(displayValue);
+  console.log(operand);
+  result = operate(num1, displayValue, operand);
+  console.log(result);    
+});
