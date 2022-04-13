@@ -20,28 +20,30 @@ const result_div = document.getElementById('result');
 
 let displayValue = '';
 let num1 = '';
-let result = 0;
+let result = '';
 let operand = '';
 
 //simple math operator functions.
-function addition(x, y) {
+function addition(x, y){
     return x + y;
 };
 
-function subtraction(x, y) {
+function subtraction(x, y){
     return x - y;
 };
 
-function multiplication(x, y) {
+function multiplication(x, y){
     return x * y;
 };
 
-function division(x, y) {
+function division(x, y){
     return x / y;
 };
 
 //function to take two numbers and apply an operand to them.
-function operate(x, y, operand) {
+function operate(x, y, operand){
+  x = parseInt(x);
+  y = parseInt(y);
     switch(operand){
         case '+' : return addition(x, y)
           break;
@@ -51,27 +53,66 @@ function operate(x, y, operand) {
           break;
         case '/': return division(x, y)
           break;
-    }
-}
+    };
+};
 
-// function to reset all values to zero or empty for
+// Function to reset all values to zero or empty for
 // the next equation.
-function clearAll() {
-  displayValue = 0;
+function clearAll(){
+  num1 = ''
+  displayValue = '';
   workingTree.textContent = '';
-  result = 0;
+  result = '';
   result_div.textContent = 0;
 }
 
-// function to collect 1st number in equation.
-function getNumber(btn) {
-  displayValue += btn; 
-  return displayValue;
+// Function to collect displayValue.
+function getNumber(btn){
+  displayValue += btn;
+  console.log(displayValue)
+};
+
+function emptyResult(){
+  if(num1 == ''){
+    num1 = displayValue;
+  } else {
+    num1 = operate(num1, displayValue, operand);
+  };
+  displayValue = '';
+};
+
+function withResult(){
+  num1 = String(result);
+  result = '';
+};
+
+// Determines solution to equation.
+function getResult(){
+  result = operate(num1, displayValue, operand); 
+  resetNumbers(); 
+  console.log(result); 
+};
+
+// Function to reset num1 and display values to continue equations.
+function resetNumbers(){
+  num1 = '';
+  displayValue = '';
+  operand = '';
+};
+
+//updated function
+function equation(operator){
+  if(result == ''){
+    emptyResult();
+  } else {
+    withResult();
+  };
+  operand = operator;
 };
 
 
 
-//Start of eventListeners//
+//EventListeners//
 one.addEventListener('click', () => {
   getNumber(1);
 });
@@ -113,7 +154,7 @@ zero.addEventListener('click', () => {
 });
 
 equals.addEventListener('click', () => {
-  operate();
+  getResult();
 });
 
 clear.addEventListener('click', () => {
@@ -121,55 +162,17 @@ clear.addEventListener('click', () => {
 });
 
 add.addEventListener('click', () => {
-  
+  equation('+');
 });
 
 subtract.addEventListener('click', () => {
-
+  equation('-');
 });
 
 multiply.addEventListener('click', () => {
-
+  equation('x');
 });
 
 divide.addEventListener('click', () => {
-
+  equation('/');
 });
-//End of eventListeners//
-
-//I re-wrote some of the code because I
-//  think I started off with too much at once.
-//Below is a simple version of a working calculator
-//   that needs to be applied to all the other operator buttons.
-
-
-
-function equation() {
-  num1 += displayValue;
-  operand = operand;
-  displayValue = '';
-};
-
-btnTwo.addEventListener('click', () => {
-  getNumber(2);
-});
-
-btnFour.addEventListener('click', () => {
-  getNumber(4);
-});
-
-btnPlus.addEventListener('click', () => {  
-  operand = '+';
-  equation();
-});
-
-btnEquals.addEventListener('click', () => {
-  num1 = parseInt(num1);
-  displayValue = parseInt(displayValue);
-  console.log(num1);
-  console.log(displayValue);
-  console.log(operand);
-  result = operate(num1, displayValue, operand);
-  console.log(result);    
-});
-
