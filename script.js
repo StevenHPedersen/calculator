@@ -1,3 +1,8 @@
+// Previous code was all written in the Global scope. 
+// Began organizing the code the putting functions within the correct scopes
+
+// First attempt at the calculator was messy, but achieved what I set out to accomplish.
+
 const calculator = (() => {
   //Return functions for simple math equations(+ - / x)
   const Math = (() => {
@@ -32,8 +37,9 @@ const calculator = (() => {
 
     function displayNumber(value){
       result.textContent == '0' ? result.textContent = `${value}` : result.textContent += `${value}`
+      let numberValue = 
     };   
-    
+
     return {
       displayNumber
     };
@@ -48,15 +54,17 @@ const calculator = (() => {
     let value = button.dataset.value;
     button.addEventListener('click', () => {
       displayController.displayNumber(value);
+      storedNumber = parseInt();
+      console.log(storedNumber);
     });
   });
 
   operators.forEach((button) => {
-    let value = button.dataset.value;
+    operand = button.dataset.value;
     button.addEventListener('click', () => {
-      console.log(value);
-    })
-  })
+      
+    });
+  });
 })();
 
 // function getNumber(string){

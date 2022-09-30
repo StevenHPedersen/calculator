@@ -1,3 +1,4 @@
+/* Completely redone CSS. Much more simplified, as the javascript is the main focus */
 *::after, *::before, * {
     margin: 0;
     padding: 0;
