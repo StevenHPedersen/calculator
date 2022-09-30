@@ -1,70 +1,99 @@
-* {
-    margin: none;
-    padding: none;
+*::after, *::before, * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
-    text-align: center;
 }
 
-body {
-    display: flex;
-    flex-direction: column;
+#wrapper{
+    width: 100vw;
+    height: 100vh;
 }
 
-#container {
+#calculator-flex-container {
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: #ccc;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+#calculator-flex-container > * {
+    width: 300px;
+}
+
+#body-grid {
     height: 250px;
-    width: 200px;
-    margin: auto;
-    border-radius: 12px;
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(4, 1fr);
+    gap: 15px;
+    padding: 7px;
+    background-color: #ccc;
 }
 
-#display {
+#plus,
+#minus,
+#multiply,
+#equal{
+    grid-column-start: 4;
+}
+
+#divide,
+#clear,
+#equal{
+    grid-row-start: 4;
+}
+
+
+#plus{
+    grid-row-start: 1;
+}
+
+#minus{
+    grid-row-start: 2;
+}
+
+#multiply{
+    grid-row-start: 3;
+}
+
+#divide{
+    grid-column-start: 3;
+}
+
+#clear{
+    grid-column-start: 2;
+}
+
+#header{
     background-color: black;
     color: white;
-    padding: 3px;
-    border-top-right-radius: 12px;
-    border-top-left-radius: 12px;
+    height: 50px;
 }
-
-#display > * {
-    text-align: end;
-    padding-right: 5px;
+#header > *{
+    text-align: right;
+    padding: 2px 4px 2px 4px;
 }
 
 #working-tree {
-    font-size: 12px;
+    font-size: 16px;
 }
 
 #result {
     font-size: 24px;
 }
 
-#selections {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-    gap: 4px;
-}
-
-.rows {
-    display: flex;
-    gap: 3px;
-    flex: 1;
-}
-
-.button {
-    flex: 1;
-    font-size: 16px;
-    /* border-radius: 25px; */
+button{
+    font-weight: bolder;
     border: none;
 }
 
-#multiply,
-#subtract,
-#divide,
-#add {
+button:hover{
+    border-style: inset;
+}
+
+.operator{
     background-color: orangered;
 }
