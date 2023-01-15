@@ -20,7 +20,7 @@ function division(x, y){
 };
 
 //function to take two numbers and apply an operand to them.
-function operate(x, y, operand){
+export default function operate(x, y, operand){
   x = parseInt(x);
   y = parseInt(y);
     switch(operand){
