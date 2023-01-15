@@ -34,16 +34,17 @@ function operate(x, y, operand){
     };
 };
 
+//display controller functions
 const updateDisplay = () => {
 	let main_display = document.getElementById('display-main');
 	let tree_display = document.getElementById('display-tree');
 
 	return {
-		main: (number) => {
+		main: (number) => { // Changes the main display to show selected number;
 			main_display.textContent = number;
 		},
 
-		tree: (number, symbol) => {
+		tree: (number, symbol) => { // Changes the working tree display to show current equation variables;
 			tree_display.textContent = `${number} ${symbol} `;
 		}
 	}
@@ -54,6 +55,7 @@ let savedNumber = '';
 let operand = '';
 let result = '';
 
+// Allows for quick view at saved variables
 function consoleLogValues() {
 	console.log('saved: ' + savedNumber);
 	console.log('operand: ' + operand);
@@ -75,6 +77,7 @@ function number(value) {
 	currentNumber += value;
 }
 
+// Would like to factor down, at some point. Seems like too many if/else's.
 function operator(value) {
 	if(currentNumber) {
 		if(result) {
@@ -91,7 +94,6 @@ function operator(value) {
 	operand = value;
 	} else { return }
 }
-
 
 function equal() {
 	if(result) {
