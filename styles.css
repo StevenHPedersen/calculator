@@ -33,12 +33,14 @@ body {
     padding-right: 5px;
 }
 
-#working-tree {
+#display-tree {
     font-size: 12px;
+    height: 1rem;
 }
 
-#result {
+#display-main {
     font-size: 24px;
+    height: 1.7rem;
 }
 
 #selections {
@@ -62,9 +64,10 @@ body {
     border: none;
 }
 
-#multiply,
-#subtract,
-#divide,
-#add {
+.orange {
     background-color: orangered;
+}
+
+.green {
+    background-color: green;
 }

@@ -35,7 +35,7 @@ function operate(x, y, operand){
 };
 
 //display controller functions
-const updateDisplay = () => {
+const updateDisplay = (() => {
 	let main_display = document.getElementById('display-main');
 	let tree_display = document.getElementById('display-tree');
 
@@ -44,11 +44,20 @@ const updateDisplay = () => {
 			main_display.textContent = number;
 		},
 
-		tree: (number, symbol) => { // Changes the working tree display to show current equation variables;
+		tree: (number, symbol, number2) => { // Changes the working tree display to show current equation variables;
+      if(!number2) {
 			tree_display.textContent = `${number} ${symbol} `;
-		}
+		  } else {
+        tree_display.textContent = `${number} ${symbol} ${number2}`;
+      }
+    },
+
+    reset: () => {
+      main_display.textContent = '';
+      tree_display.textContent = '';
+    }
 	}
-}
+})();
 
 let currentNumber = '';
 let savedNumber = '';
@@ -92,7 +101,10 @@ function operator(value) {
 	}
 	currentNumber = '';
 	operand = value;
-	} else { return }
+	} else {
+    operand = value;
+    return;
+  }
 }
 
 function equal() {
@@ -101,3 +113,113 @@ function equal() {
 	}
 	result = operate(savedNumber, currentNumber, operand);
 }
+
+// HTML calc button selectors
+let btn_1 = document.getElementById('one');
+let btn_2 = document.getElementById('two');
+let btn_3 = document.getElementById('three');
+let btn_4 = document.getElementById('four');
+let btn_5 = document.getElementById('five');
+let btn_6 = document.getElementById('six');
+let btn_7 = document.getElementById('seven');
+let btn_8 = document.getElementById('eight');
+let btn_9 = document.getElementById('nine');
+let btn_0 = document.getElementById('zero');
+let btn_plus = document.getElementById('plus');
+let btn_sub = document.getElementById('sub');
+let btn_mul = document.getElementById('mul');
+let btn_div = document.getElementById('div');
+let btn_equal = document.getElementById('equal');
+let btn_clear = document.getElementById('clear');
+let btn_cAll = document.getElementById('clearAll')
+
+// Number buttons
+btn_1.addEventListener('click', () => {
+  number(1);
+  updateDisplay.main(currentNumber);
+})
+btn_2.addEventListener('click', () => {
+  number(2);
+  updateDisplay.main(currentNumber);
+})
+
+btn_3.addEventListener('click', () => {
+  number(3);
+  updateDisplay.main(currentNumber);
+})
+
+btn_4.addEventListener('click', () => {
+  number(4);
+  updateDisplay.main(currentNumber);
+})
+
+btn_5.addEventListener('click', () => {
+  number(5);
+  updateDisplay.main(currentNumber);
+})
+
+btn_6.addEventListener('click', () => {
+  number(6);
+  updateDisplay.main(currentNumber);
+})
+
+btn_7.addEventListener('click', () => {
+  number(7);
+  updateDisplay.main(currentNumber);
+})
+
+btn_8.addEventListener('click', () => {
+  number(8);
+  updateDisplay.main(currentNumber);
+})
+
+btn_9.addEventListener('click', () => {
+  number(9);
+  updateDisplay.main(currentNumber);
+})
+
+btn_0.addEventListener('click', () => {
+  number(0);
+  updateDisplay.main(currentNumber);
+})
+
+// Operator buttons
+btn_plus.addEventListener('click', () => {
+  operator('+');
+  updateDisplay.main(savedNumber);
+  updateDisplay.tree(savedNumber, operand);
+})
+
+btn_sub.addEventListener('click', () => {
+  operator('-');
+  updateDisplay.main(savedNumber);
+  updateDisplay.tree(savedNumber, operand);
+})
+
+btn_mul.addEventListener('click', () => {
+  operator('*');
+  updateDisplay.main(savedNumber);
+  updateDisplay.tree(savedNumber, operand);
+})
+
+btn_div.addEventListener('click', () => {
+  operator('/');
+  updateDisplay.main(savedNumber);
+  updateDisplay.tree(savedNumber, operand);
+})
+
+btn_equal.addEventListener('click', () => {
+  equal();
+  updateDisplay.main(result);
+  updateDisplay.tree(savedNumber, operand, currentNumber);
+})
+
+btn_cAll.addEventListener('click', () => {
+  resetValues();
+  updateDisplay.reset();
+})
+
+btn_clear.addEventListener('click', () => {
+  currentNumber = '';
+  updateDisplay.main(currentNumber);
+})
